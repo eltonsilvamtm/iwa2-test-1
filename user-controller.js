@@ -17,6 +17,7 @@ exports.getUsers = function(req, res) {
       res.status(400).json(err); 
     } 
     res.json(users);
+    console.log(users);
   }); 
 };
 

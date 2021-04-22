@@ -15,6 +15,19 @@ app.use(bodyParser.json());
 app.use(logger('tiny'));
 app.use(require('./routes'));
 
+app.listen(port, function(err){
+    console.log('Listening on port: ' + port);
+});
+
+const dbURI = "mongodb://localhost/test";
+//console.log(process.env);
+//const dbURI = process.env.DB_URL;
+
+//connection to the database
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+        .then((result) => console.log('connected to db'))
+        .catch((err) => console.log(err));
+
 // http.createServer((req, res)=>{
 //   res.write(users.join(", ")); //display the list of users on the page
 // //   res.write("\n\n"+emails.join(", ")); //display the list of users on the page
@@ -45,15 +58,3 @@ app.use(require('./routes'));
 // mongoose.connection.on('connected', () => { 
 //     console.log('MongoDB is successfully connected');
 // });
-
-app.listen(port, function(err){
-    console.log('Listening on port: ' + port);
-});
-
-// const dbURI = "mongodb://localhost/test";
-const dbURI = process.env.DB_URL;
-
-//connection to the database
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-        .then((result) => console.log('connected to db'))
-        .catch((err) => console.log(err));
