@@ -13,6 +13,7 @@ dotenv.config();
 
 app.use(bodyParser.json());
 app.use(logger('tiny'));
+app.use(cors()); //this allows access from any website
 app.use(require('./routes'));
 
 app.listen(port, function(err){
